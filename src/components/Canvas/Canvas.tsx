@@ -11,9 +11,10 @@ interface CanvasProps {
   size: number
   canvas: any
   ctx: any
+  color: string
 }
 
-const Canvas = ({ isPressed, setIsPressed, x, y, setX, setY, size, canvas, ctx }: CanvasProps) => {
+const Canvas = ({ isPressed, setIsPressed, x, y, setX, setY, size, canvas, ctx, color }: CanvasProps) => {
   const onCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     setIsPressed(true)
 
@@ -32,12 +33,30 @@ const Canvas = ({ isPressed, setIsPressed, x, y, setX, setY, size, canvas, ctx }
     if (isPressed) {
       const x2 = e.nativeEvent.offsetX
       const y2 = e.nativeEvent.offsetY
+
+      drawCircle(x2, y2)
+      drawLine(x, y, x2, y2)
+
+      setX(x2)
+      setY(y2)
     }
   }
 
-  function drawCircle(x: number, y: number) {}
+  function drawCircle(x: number, y: number) {
+    ctx.beginPath()
+    ctx.arc(x, y, size, 0, Math.PI * 2)
+    ctx.fillStyle = color
+    ctx.fill()
+  }
 
-  function drawLine(x1: number, y1: number, x2: number, y2: number) {}
+  function drawLine(x1: number, y1: number, x2: number, y2: number) {
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.strokeStyle = color
+    ctx.lineWidth = size * 2
+    ctx.stroke()
+  }
 
   return (
     <canvas

@@ -27,7 +27,9 @@ const Toolbox = ({ color, setColor, setSize, size, canvas, ctx }: ToolboxProps) 
     setSize((size: number) => (size -= 5))
   }
 
-  const onColorChange = () => {}
+  const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(e.target.value)
+  }
 
   const clear = () => {
     ctx.clearRect(0, 0, canvas.current.width, canvas.current.height)

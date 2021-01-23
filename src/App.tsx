@@ -28,6 +28,7 @@ const App = () => {
         size={size}
         canvas={canvas}
         ctx={ctx.current}
+        color={color}
       />
       <Toolbox size={size} setSize={setSize} color={color} setColor={setColor} canvas={canvas} ctx={ctx.current} />
     </div>
