@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './App.scss'
 import Canvas from './components/Canvas/Canvas'
 import Toolbox from './components/Toolbox/Toolbox'
@@ -10,6 +10,11 @@ const App = () => {
   const [x, setX] = useState()
   const [y, setY] = useState()
   const canvas = useRef<HTMLCanvasElement>(null)
+  const ctx = useRef<any>()
+
+  useEffect(() => {
+    ctx.current = canvas.current?.getContext('2d')
+  }, [])
 
   return (
     <div className='app'>
@@ -22,8 +27,9 @@ const App = () => {
         setY={setY}
         size={size}
         canvas={canvas}
+        ctx={ctx.current}
       />
-      <Toolbox size={size} setSize={setSize} color={color} setColor={setColor} canvas={canvas} />
+      <Toolbox size={size} setSize={setSize} color={color} setColor={setColor} canvas={canvas} ctx={ctx.current} />
     </div>
   )
 }

@@ -10,20 +10,34 @@ interface CanvasProps {
   setY: any
   size: number
   canvas: any
+  ctx: any
 }
 
-const Canvas = ({ isPressed, setIsPressed, x, y, setX, setY, size, canvas }: CanvasProps) => {
-  const onCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+const Canvas = ({ isPressed, setIsPressed, x, y, setX, setY, size, canvas, ctx }: CanvasProps) => {
+  const onCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     setIsPressed(true)
+
+    setX(e.nativeEvent.offsetX)
+    setY(e.nativeEvent.offsetY)
   }
 
   const onCanvasMouseUp = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     setIsPressed(false)
+
+    setX(undefined)
+    setY(undefined)
   }
 
   const onCanvasMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    setIsPressed(false)
+    if (isPressed) {
+      const x2 = e.nativeEvent.offsetX
+      const y2 = e.nativeEvent.offsetY
+    }
   }
+
+  function drawCircle(x: number, y: number) {}
+
+  function drawLine(x1: number, y1: number, x2: number, y2: number) {}
 
   return (
     <canvas

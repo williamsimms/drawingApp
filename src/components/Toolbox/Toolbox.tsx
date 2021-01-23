@@ -7,9 +7,10 @@ interface ToolboxProps {
   color: string
   setColor: any
   canvas: any
+  ctx: any
 }
 
-const Toolbox = ({ color, setColor, setSize, size, canvas }: ToolboxProps) => {
+const Toolbox = ({ color, setColor, setSize, size, canvas, ctx }: ToolboxProps) => {
   const increase = () => {
     if (size >= 50) {
       return setSize(50)
@@ -29,7 +30,7 @@ const Toolbox = ({ color, setColor, setSize, size, canvas }: ToolboxProps) => {
   const onColorChange = () => {}
 
   const clear = () => {
-    console.log(canvas)
+    ctx.clearRect(0, 0, canvas.current.width, canvas.current.height)
   }
 
   return (
