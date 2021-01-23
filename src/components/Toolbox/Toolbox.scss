@@ -4,6 +4,13 @@
   display: flex;
   width: 80.4rem;
   padding: 1.6rem;
+  margin: 0;
+
+  & > button {
+    &:focus {
+      outline: none;
+    }
+  }
 
   & > * {
     background-color: #fff;

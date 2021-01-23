@@ -1,7 +1,17 @@
 import React from 'react'
 import './Toolbox.scss'
 
-const Toolbox = () => {
+interface ToolboxProps {
+  size: number
+  setSize: any
+  color: string
+  setColor: any
+}
+
+const Toolbox = ({ color, setColor, setSize, size }: ToolboxProps) => {
+  const increase = () => {}
+  const decrease = () => {}
+
   return (
     <div className='toolbox'>
       <button id='decrease'>-</button>
