@@ -6,9 +6,13 @@ interface CanvasProps {
   setIsPressed: any
   x: any
   y: any
+  setX: any
+  setY: any
+  size: number
+  canvas: any
 }
 
-const Canvas = ({ isPressed, setIsPressed, x, y }: CanvasProps) => {
+const Canvas = ({ isPressed, setIsPressed, x, y, setX, setY, size, canvas }: CanvasProps) => {
   const onCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     setIsPressed(true)
   }
@@ -23,6 +27,7 @@ const Canvas = ({ isPressed, setIsPressed, x, y }: CanvasProps) => {
 
   return (
     <canvas
+      ref={canvas}
       width='800'
       height='700'
       onMouseDown={onCanvasMouseDown}

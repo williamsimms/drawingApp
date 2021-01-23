@@ -6,19 +6,45 @@ interface ToolboxProps {
   setSize: any
   color: string
   setColor: any
+  canvas: any
 }
 
-const Toolbox = ({ color, setColor, setSize, size }: ToolboxProps) => {
-  const increase = () => {}
-  const decrease = () => {}
+const Toolbox = ({ color, setColor, setSize, size, canvas }: ToolboxProps) => {
+  const increase = () => {
+    if (size >= 50) {
+      return setSize(50)
+    }
+
+    setSize((size: number) => (size += 5))
+  }
+
+  const decrease = () => {
+    if (size <= 5) {
+      return setSize(5)
+    }
+
+    setSize((size: number) => (size -= 5))
+  }
+
+  const onColorChange = () => {}
+
+  const clear = () => {
+    console.log(canvas)
+  }
 
   return (
     <div className='toolbox'>
-      <button id='decrease'>-</button>
-      <span id='size'>10</span>
-      <button id='increase'>+</button>
-      <input type='color' id='color' />
-      <button id='clear'>X</button>
+      <button className='decrease' onClick={decrease}>
+        -
+      </button>
+      <span className='size'>{size}</span>
+      <button className='increase' onClick={increase}>
+        +
+      </button>
+      <input type='color' id='color' onChange={onColorChange} />
+      <button className='clear' onClick={clear}>
+        X
+      </button>
     </div>
   )
 }
